@@ -73,6 +73,14 @@ module.exports = function (grunt) {
                 }
             }
         },
+        
+        copy: {
+            main: {
+                expand: true,
+                src: ['img/*', 'views/images/*', 'ngrok.exe'],
+                dest: 'dist/',
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-responsive-images');

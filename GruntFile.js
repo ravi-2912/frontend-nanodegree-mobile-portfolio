@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                     sizes: [{
                         rename: false,
                         width: "100%",
-                        quality: 90
+                        quality: 85
                     }]
                 },
                 files: [{
@@ -44,13 +44,13 @@ module.exports = function (grunt) {
                 options: {
                     sizes: [{
                         width: 540,
-                        quality: 90
+                        quality: 85
                     }, {
                         width: 360,
-                        quality: 90
+                        quality: 85
                     }, {
                         width: 100,
-                        quality: 90
+                        quality: 85
                     }]
                 },
                 files: [{
@@ -63,16 +63,16 @@ module.exports = function (grunt) {
         },
         clean: {
             dev: {
-                src: ['img', "views/images"]
+                src: ['img', "views/images", "dist"]
             },
         },
         mkdir: {
             dev: {
                 options: {
-                    create: ['img', "views/images"]
+                    create: ['img', "views/images", "dist"]
                 }
             }
-        }
+        },
     });
 
     grunt.loadNpmTasks('grunt-responsive-images');
@@ -80,5 +80,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
 
-    grunt.registerTask("default", ["clean", "mkdir", "responsive_images"]);
+    grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "cssmin", "htmlmin", "copy"]);
 };

@@ -35,7 +35,24 @@ module.exports = function (grunt) {
                     dest: 'img'
                 }, {
                     expand: true,
-                    src: ['*.{jpg,gif,png}'],
+                    src: ["pizza.png"],
+                    cwd: "views/img_src",
+                    dest: "views/images"
+                }]
+            },
+            task2: {
+                options: {
+                    sizes: [{
+                        width: 540,
+                        quality: 90
+                    }, {
+                        width: 360,
+                        quality: 90
+                    }]
+                },
+                files: [{
+                    expand: true,
+                    src: ['pizzeria.jpg'],
                     cwd: 'views/img_src',
                     dest: 'views/images'
                 }]

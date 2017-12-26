@@ -73,7 +73,41 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'dist/css',
+                    ext: '.min.css'
+                }]
+            }
+        },
+        uglify: {
+            my_target: {
+                options: {
+                    mangle: false
+                },
+                files: {
+                    'dist/js/perfmatters.min.js': ['js/perfmatters.js']
+                }
+            }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/index.html': 'index.html',
+                    'dist/project-2048.html': 'project-2048.html',
+                    'dist/project-mobile.html': 'project-mobile.html',
+                    'dist/project-webperf.html': 'project-webperf.html',
+                }
+            },
+        },
         copy: {
             main: {
                 expand: true,
@@ -82,6 +116,11 @@ module.exports = function (grunt) {
             }
         }
     });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-clean');

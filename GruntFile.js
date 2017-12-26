@@ -79,7 +79,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'css',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'dist/css',
+                    dest: 'css',
                     ext: '.min.css'
                 }]
             }
@@ -108,10 +108,16 @@ module.exports = function (grunt) {
                 }
             },
         },
+        concat: {
+            dist: {
+                src: ['css/style.min.css', 'css/print.min.css'],
+                dest: 'dist/css/styles.min.css',
+            }
+        },
         copy: {
             main: {
                 expand: true,
-                src: ['img/*', 'views/images/*', 'ngrok.exe'],
+                src: ['img/*', 'views/**', 'ngrok.exe'],
                 dest: 'dist/',
             }
         }
@@ -123,9 +129,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     grunt.loadNpmTasks('grunt-responsive-images');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
 
-    grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "cssmin", "htmlmin", "copy"]);
+   grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "cssmin", "htmlmin", "copy"]);
+   grunt.registerTask("minify-html", ["htmlmin"]);
+   grunt.registerTask("copy-task", ["copy"]);
+   grunt.registerTask("minify-css", ["cssmin", "concat"]);
+
 };

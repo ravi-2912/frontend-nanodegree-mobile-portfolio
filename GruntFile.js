@@ -1,22 +1,6 @@
-
-/* Tutorial */
-/*
-module.exports = function(grunt) {
-    grunt.registerTask("speak", function(){
-        console.log("I am speaking.");
-    });
-
-    grunt.registerTask("yell", function(){
-        console.log("I am YELLING!");
-    });
-
-    grunt.registerTask("default",["speak", "yell"]);
-
-};
-*/
-
-
 module.exports = function (grunt) {
+
+    //var mozjpeg = require('imagemin-mozjpeg');
 
     grunt.initConfig({
         responsive_images: {
@@ -25,7 +9,7 @@ module.exports = function (grunt) {
                     sizes: [{
                         rename: false,
                         width: "100%",
-                        quality: 70
+                        quality: 80
                     }]
                 },
                 files: [{
@@ -39,13 +23,13 @@ module.exports = function (grunt) {
                 options: {
                     sizes: [{
                         width: 540,
-                        quality: 70
+                        quality: 80
                     }, {
                         width: 360,
-                        quality: 70
+                        quality: 80
                     }, {
                         width: 100,
-                        quality: 70
+                        quality: 80
                     }]
                 },
                 files: [{
@@ -59,11 +43,11 @@ module.exports = function (grunt) {
                 options: {
                     sizes: [{
                         width: 100,
-                        quality: 70
+                        quality: 80
                     }, {
                         rename: false,
                         width: "100%",
-                        quality: 70
+                        quality: 80
                     }]
                 },
                 files: [{
@@ -110,7 +94,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'views/css',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'views/css',
+                    dest: 'dist/views/css',
                     ext: '.min.css'
                 }]
             }
@@ -148,19 +132,31 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
-            dist: {
+        imagemin: {
+            dynamic: {
+                options: {
+                    optimizationLevel: 3,
+                    svgoPlugins: [{removeViewBox: false}],
+                    //use: [mozjpeg()] // Example plugin usage
+                },
                 files: [{
                     expand: true,
-                    src: 'img/*',
-                    dest: 'dist/'
+                    cwd: 'img/',
+                    src: ['*.{png,jpg,gif}'],
+                    dest: 'dist/img/'
                 }, {
                     expand: true,
-                    src: 'views/images/*',
-                    dest: 'dist/'
-                }, {
+                    cwd: 'views/images/',
+                    src: ['*.{png,jpg,gif}'],
+                    dest: 'dist/views/images/'
+                }]
+            }
+        },
+        copy: {
+            ngrok: {
+                files: [{
                     expand: true,
-                    src: 'views/css/*.min.css',
+                    src: 'ngrok.exe',
                     dest: 'dist/'
                 }]
             }
@@ -188,8 +184,10 @@ module.exports = function (grunt) {
     grunt.registerTask("minify-css", ["cssmin", "concat"]);
     grunt.registerTask("minify-html", ["htmlmin"]);
     grunt.registerTask("minify-js", ["uglify"]);
-    grunt.registerTask("copy-dist", ["copy"]);
+    grunt.registerTask("minify-img", ["imagemin"]);
+    grunt.registerTask("copy-dist", ["copy:dist"]);
+    grunt.registerTask("copy-ngrok", ["copy:ngrok"]);
 
-    grunt.registerTask("default", ["clean-all", "optim-images", "mkdir-all", "minify-css", "minify-js", "minify-html", "copy-dist"]);
+    grunt.registerTask("default", ["clean-all", "optim-images", "mkdir-all", "minify-css", "minify-js", "minify-html", "minify-img", "copy"]);
 
 };

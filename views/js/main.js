@@ -566,8 +566,10 @@ window.addEventListener('scroll', onScroll); // decoupling the reflow and paint 
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+  /* TODO: Update cols based on screen width */
   var cols = 8;
   var s = 256;
+  /* TODO: Update count based on screen height */
   for (var i = 0; i < 32; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';

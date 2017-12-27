@@ -443,15 +443,46 @@ var pizzaElementGenerator = function(i) {
   var dx = (newSize - oldSize) * windowWidth;
 
   return dx;
-}
+}*/
 
 // Iterates through pizza elements on the page and changes their widths
-var pizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+var pizzaContainer;
 function changePizzaSizes(size) {
-  for (var i = 0; i < pizzaContainer.length; i++) {
+  /*for (var i = 0; i < pizzaContainer.length; i++) {
     var dx = determineDx(pizzaContainer[i], size);
     var newwidth = (pizzaContainer[i].offsetWidth + dx) + 'px';
     pizzaContainer[i].style.width = newwidth;
+  }*/
+  for (var i = 0; i < pizzaContainer.length; i++) {
+    var container = pizzaContainer[i];
+    switch(size) {
+      case "1":
+        if(container.classList.contains("medium")) {
+          container.classList.remove("medium");
+        } else {
+          container.classList.remove("large");
+        }
+        container.classList.add("small");
+        break;
+      case "2":
+        if(container.classList.contains("large")) {
+          container.classList.remove("large");
+        } else {
+          container.classList.remove("small");
+        }
+        container.classList.add("medium");
+        break;
+      case "3":
+        if(container.classList.contains("medium")) {
+          container.classList.remove("medium");
+        } else {
+          container.classList.remove("small");
+        }
+        container.classList.add("large");
+        break;
+      default:
+        console.log("bug in sizeSwitcher");
+    }
   }
 }
 

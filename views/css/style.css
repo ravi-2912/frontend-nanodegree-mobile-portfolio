@@ -41,6 +41,10 @@ form {
   display: flex;
 }
 
+.randomPizzaContainer img {
+  will-change: transform;
+}
+
 .randomPizzaContainer:after {
   content: "";
   display: table;

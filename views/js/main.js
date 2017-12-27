@@ -499,13 +499,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
-var items;
+var items, scrollTop = 0;
 function updatePositions() {
-  //frame++;
-  //window.performance.mark("mark_start_frame");
+  frame++;
+  window.performance.mark("mark_start_frame");
 
-  // document.body.scrollTop is no longer supported in Chrome.
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
@@ -513,23 +511,28 @@ function updatePositions() {
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
-  //window.performance.mark("mark_end_frame");
-  //window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  //if (frame % 10 === 0) {
-  //  var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-  //  logAverageFrame(timesToUpdatePosition);
-  //}
+  window.performance.mark("mark_end_frame");
+  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+  if (frame % 10 === 0) {
+    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+    logAverageFrame(timesToUpdatePosition);
+  }
   requestAnimationFrame(updatePositions);
 }
 
+function onScroll() {
+  // document.body.scrollTop is no longer supported in Chrome.
+  scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+}
+
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', onScroll); // decoupling the reflow and paint by adding onScrol() to  do reflow only
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  var cols = 2;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 32; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-100.png";

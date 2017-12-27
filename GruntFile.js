@@ -59,12 +59,29 @@ module.exports = function (grunt) {
                     cwd: 'views/img_src',
                     dest: 'views/images'
                 }]
+            },
+            task3: {
+                options: {
+                    sizes: [{
+                        width: 100,
+                        quality: 85
+                    }]
+                },
+                files: [{
+                    expand: true,
+                    src: ['pizza.png'],
+                    cwd: 'views/img_src',
+                    dest: 'views/images'
+                }]
             }
         },
         clean: {
             dev: {
                 src: ['img', "views/images", "dist"]
             },
+            pizzaviews: {
+                src: ["dist/views"]
+            }
         },
         mkdir: {
             dev: {
@@ -119,6 +136,11 @@ module.exports = function (grunt) {
                 expand: true,
                 src: ['img/*', 'views/**', 'ngrok.exe'],
                 dest: 'dist/',
+            },
+            pizzaviews: {
+                expand: true,
+                src: ['views/**'],
+                dest: 'dist/',
             }
         }
     });
@@ -134,9 +156,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
 
-   grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "cssmin", "htmlmin", "copy"]);
+   
    grunt.registerTask("minify-html", ["htmlmin"]);
-   grunt.registerTask("copy-task", ["copy"]);
+   grunt.registerTask("copy-pizza", ["clean:pizzaviews", "copy:pizzaviews"]);
    grunt.registerTask("minify-css", ["cssmin", "concat"]);
+   grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "minify-css", "htmlmin", "copy"]);
 
 };

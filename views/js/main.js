@@ -415,7 +415,7 @@ function changeSliderLabel(size) {
     default:
       console.log("bug in changeSliderLabel");
   }
-}*/
+}
 
 // Changes the slider value to a percent width
 /* NOT NEEDED */
@@ -566,7 +566,7 @@ window.addEventListener('scroll', onScroll); // decoupling the reflow and paint 
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 2;
+  var cols = 8;
   var s = 256;
   for (var i = 0; i < 32; i++) {
     var elem = document.createElement('img');

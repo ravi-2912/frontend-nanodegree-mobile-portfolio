@@ -400,8 +400,8 @@ var pizzaElementGenerator = function(i) {
 
 
 // Changes the value for the size of the pizza above the slider
-/* NOT NEEDED */
-/*function changeSliderLabel(size) {
+
+function changeSliderLabel(size) {
   switch(size) {
     case "1":
       document.querySelector("#pizzaSize").innerHTML = "Small";

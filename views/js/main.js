@@ -400,7 +400,8 @@ var pizzaElementGenerator = function(i) {
 
 
 // Changes the value for the size of the pizza above the slider
-function changeSliderLabel(size) {
+/* NOT NEEDED */
+/*function changeSliderLabel(size) {
   switch(size) {
     case "1":
       document.querySelector("#pizzaSize").innerHTML = "Small";
@@ -414,10 +415,11 @@ function changeSliderLabel(size) {
     default:
       console.log("bug in changeSliderLabel");
   }
-}
+}*/
 
 // Changes the slider value to a percent width
-function sizeSwitcher (size) {
+/* NOT NEEDED */
+/*function sizeSwitcher (size) {
   switch(size) {
     case "1":
       return 0.25;
@@ -428,10 +430,11 @@ function sizeSwitcher (size) {
     default:
       console.log("bug in sizeSwitcher");
   }
-}
+}/*
 
 // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-function determineDx (elem, size) {
+/* NOT NEEDED */
+/*function determineDx (elem, size) {
   var oldWidth = elem.offsetWidth;
   var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
   var oldSize = oldWidth / windowWidth;

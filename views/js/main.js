@@ -544,6 +544,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
+  pizzaContainer = document.querySelectorAll(".randomPizzaContainer");
   items = document.querySelectorAll('.mover');
   requestAnimationFrame(updatePositions);
 });

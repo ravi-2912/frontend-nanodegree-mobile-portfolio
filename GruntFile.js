@@ -20,12 +20,12 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         responsive_images: {
-            task1: {
+            main: {
                 options: {
                     sizes: [{
                         rename: false,
                         width: "100%",
-                        quality: 85
+                        quality: 70
                     }]
                 },
                 files: [{
@@ -33,24 +33,19 @@ module.exports = function (grunt) {
                     src: ['*.{jpg,gif,png}'],
                     cwd: 'img_src',
                     dest: 'img'
-                }, {
-                    expand: true,
-                    src: ["pizza.png"],
-                    cwd: "views/img_src",
-                    dest: "views/images"
-                }]
+                }, ]
             },
-            task2: {
+            pizzeria: {
                 options: {
                     sizes: [{
                         width: 540,
-                        quality: 85
+                        quality: 70
                     }, {
                         width: 360,
-                        quality: 85
+                        quality: 70
                     }, {
                         width: 100,
-                        quality: 85
+                        quality: 70
                     }]
                 },
                 files: [{
@@ -60,11 +55,15 @@ module.exports = function (grunt) {
                     dest: 'views/images'
                 }]
             },
-            task3: {
+            pizza: {
                 options: {
                     sizes: [{
                         width: 100,
-                        quality: 85
+                        quality: 70
+                    }, {
+                        rename: false,
+                        width: "100%",
+                        quality: 70
                     }]
                 },
                 files: [{
@@ -76,38 +75,54 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            dev: {
-                src: ['img', "views/images", "dist"]
+            dist: {
+                src: "dist"
             },
-            pizzaviews: {
-                src: ["dist/views"]
-            }
+            images: {
+                src: ['img', "views/images"]
+            },
         },
         mkdir: {
-            dev: {
+            images: {
                 options: {
-                    create: ['img', "views/images", "dist"]
+                    create: ['img', "views/images"]
+                }
+            },
+            dist: {
+                options: {
+                    create: ["dist", "dist/css", "dist/js", "dist/img", "dist/views",  "dist/views/css",  "dist/views/js",  "dist/views/images"]
                 }
             }
         },
         cssmin: {
             target: {
+                options: {
+                    mergeIntoShorthands: false,
+                    roundingPrecision: -1
+                },
                 files: [{
                     expand: true,
                     cwd: 'css',
                     src: ['*.css', '!*.min.css'],
                     dest: 'css',
                     ext: '.min.css'
+                },{
+                    expand: true,
+                    cwd: 'views/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'views/css',
+                    ext: '.min.css'
                 }]
             }
         },
         uglify: {
-            my_target: {
+            dist: {
                 options: {
                     mangle: false
                 },
                 files: {
-                    'dist/js/perfmatters.min.js': ['js/perfmatters.js']
+                    'dist/js/perfmatters.min.js': 'js/perfmatters.js',
+                    'dist/views/js/main.min.js': 'views/js/main.js'
                 }
             }
         },
@@ -122,25 +137,32 @@ module.exports = function (grunt) {
                     'dist/project-2048.html': 'project-2048.html',
                     'dist/project-mobile.html': 'project-mobile.html',
                     'dist/project-webperf.html': 'project-webperf.html',
+                    'dist/views/pizza.html': 'views/pizza.html'
                 }
             },
         },
         concat: {
             dist: {
-                src: ['css/style.min.css', 'css/print.min.css'],
-                dest: 'dist/css/styles.min.css',
+                files: {
+                    'dist/css/styles.min.css': ['css/style.min.css', 'css/print.min.css']
+                }
             }
         },
         copy: {
-            main: {
-                expand: true,
-                src: ['img/*', 'views/**', 'ngrok.exe'],
-                dest: 'dist/',
-            },
-            pizzaviews: {
-                expand: true,
-                src: ['views/**'],
-                dest: 'dist/',
+            dist: {
+                files: [{
+                    expand: true,
+                    src: 'img/*',
+                    dest: 'dist/'
+                }, {
+                    expand: true,
+                    src: 'views/images/*',
+                    dest: 'dist/'
+                }, {
+                    expand: true,
+                    src: 'views/css/*.min.css',
+                    dest: 'dist/'
+                }]
             }
         }
     });
@@ -156,10 +178,18 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
 
-   
-   grunt.registerTask("minify-html", ["htmlmin"]);
-   grunt.registerTask("copy-pizza", ["clean:pizzaviews", "copy:pizzaviews"]);
-   grunt.registerTask("minify-css", ["cssmin", "concat"]);
-   grunt.registerTask("default", ["clean", "mkdir", "responsive_images", "uglify", "minify-css", "htmlmin", "copy"]);
+    grunt.registerTask("optim-images", ["clean:images", "responsive_images"]);
+    grunt.registerTask("clean-dist", ["clean:dist"]);
+    grunt.registerTask("clean-img", ["clean:images"]);
+    grunt.registerTask("clean-all", ["clean"]);
+    grunt.registerTask("mkdir-dist", ["mkdir:dist"]);
+    grunt.registerTask("mkdir-img", ["mkdir:images"]);
+    grunt.registerTask("mkdir-all", ["mkdir"]);
+    grunt.registerTask("minify-css", ["cssmin", "concat"]);
+    grunt.registerTask("minify-html", ["htmlmin"]);
+    grunt.registerTask("minify-js", ["uglify"]);
+    grunt.registerTask("copy-dist", ["copy"]);
+
+    grunt.registerTask("default", ["clean-all", "optim-images", "mkdir-all", "minify-css", "minify-js", "minify-html", "copy-dist"]);
 
 };

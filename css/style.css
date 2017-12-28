@@ -56,14 +56,14 @@ img {
   max-width: 100%;
 }
 
-header,
-footer,
 .container {
   max-width: 45em;
   margin: 0 auto;
 }
 
 header {
+  max-width: 45em;
+  margin: 0 auto;
   padding: 0 0.5em;
   color: #C90B0B;
 }
@@ -112,6 +112,8 @@ li p {
 }
 
 footer {
+  max-width: 45em;
+  margin: 0 auto;
   padding: 0 0.5em;
   border-top: 1px solid #ccc;
 }

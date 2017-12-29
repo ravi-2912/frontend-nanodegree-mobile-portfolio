@@ -3,3 +3,5 @@ node_modules/
 dist/
 img/
 views/images/
+*.min.css
+*.min.js

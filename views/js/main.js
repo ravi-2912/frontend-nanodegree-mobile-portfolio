@@ -417,42 +417,18 @@ function changeSliderLabel(size) {
   }
 }
 
-// Changes the slider value to a percent width
-/* NOT NEEDED */
-/*function sizeSwitcher (size) {
-  switch(size) {
-    case "1":
-      return 0.25;
-    case "2":
-      return 0.3333;
-    case "3":
-      return 0.5;
-    default:
-      console.log("bug in sizeSwitcher");
-  }
-}/*
-
-// Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-/* NOT NEEDED */
-/*function determineDx (elem, size) {
-  var oldWidth = elem.offsetWidth;
-  var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-  var oldSize = oldWidth / windowWidth;
-
-  var newSize = sizeSwitcher(size);
-  var dx = (newSize - oldSize) * windowWidth;
-
-  return dx;
-}*/
-
 // Iterates through pizza elements on the page and changes their widths
-var pizzaContainer;
+var pizzaContainer;   // made global to avoid repeated queries.
 function changePizzaSizes(size) {
-  /*for (var i = 0; i < pizzaContainer.length; i++) {
-    var dx = determineDx(pizzaContainer[i], size);
-    var newwidth = (pizzaContainer[i].offsetWidth + dx) + 'px';
-    pizzaContainer[i].style.width = newwidth;
-  }*/
+
+  /* Removed code for determineDx() and sizeSwtich() and making using of
+     CSS classess to change the size. The CSS classes large, medium and 
+     small will be toggled based on slider/
+     As a result for loop has been modified significntly. This avoids
+     reflow/layout request and then styling which resulted in Forced
+     Synchronous Layout (FSL). 
+     The new loop is just style changes.
+  */
   for (var i = 0; i < pizzaContainer.length; i++) {
     var container = pizzaContainer[i];
     switch(size) {

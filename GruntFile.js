@@ -88,7 +88,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'css',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'css',
+                    dest: 'dist/css',
                     ext: '.min.css'
                 },{
                     expand: true,
@@ -181,7 +181,7 @@ module.exports = function (grunt) {
     grunt.registerTask("mkdir-dist", ["mkdir:dist"]);
     grunt.registerTask("mkdir-img", ["mkdir:images"]);
     grunt.registerTask("mkdir-all", ["mkdir"]);
-    grunt.registerTask("minify-css", ["cssmin", "concat"]);
+    grunt.registerTask("minify-css", ["cssmin"]);
     grunt.registerTask("minify-html", ["htmlmin"]);
     grunt.registerTask("minify-js", ["uglify"]);
     grunt.registerTask("minify-img", ["imagemin"]);

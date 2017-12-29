@@ -42,7 +42,7 @@ module.exports = function (grunt) {
             pizza: {
                 options: {
                     sizes: [{
-                        width: 100,
+                        width: 73,
                         quality: 80
                     }, {
                         rename: false,

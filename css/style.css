@@ -38,17 +38,6 @@ img {
   max-width: 100%;
 }
 
-.container {
-  max-width: 45em;
-  margin: 0 auto;
-}
-
-.content {
-  max-width: 43em;
-  margin: 0 auto;
-  padding: 1em 1em;
-}
-
 .content li {
   list-style-type: none;
   font-size: 1.1em;

@@ -564,16 +564,20 @@ document.addEventListener('DOMContentLoaded', function() {
   /* TODO: Update cols based on screen width */
   var cols = 8;
   var s = 256;
+  var movingPizzas = document.querySelector("#movingPizzas1");
+  var movingPizzasCount = window.height/256;
   /* TODO: Update count based on screen height */
   for (var i = 0; i < 32; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
+    // this cannot be declaed outside loop as <img> needs to be created for each mobing pizza
     var elem = document.createElement('img');
+
     elem.className = 'mover';
     elem.src = "images/pizza-73.png";  // using a smaller optimised image for animation
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   // updating the global variables
   pizzaContainer = document.querySelectorAll(".randomPizzaContainer");

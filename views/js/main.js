@@ -561,11 +561,11 @@ window.addEventListener('scroll', onScroll); // decoupling the reflow and paint 
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  /* TODO: Update cols based on screen width */
-  var cols = 8;
+  var cols = Math.ceil(window.innerWidth/256);
   var s = 256;
   var movingPizzas = document.querySelector("#movingPizzas1");
   var rows = Math.ceil(window.innerHeight/256);
+  console.log(rows*cols);
   for (var i = 0; i < cols * rows; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
     // this cannot be declaed outside loop as <img> needs to be created for each mobing pizza
     var elem = document.createElement('img');

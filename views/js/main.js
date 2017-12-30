@@ -469,7 +469,7 @@ function changePizzaSizes(size) {
       console.log("bug in changePizzaSizes");
       return false;
   }
-  for (var i = 1; i < pizzaContainer.length; i++) {
+  for (var i = 1, len = pizzaContainer.length; i < len; i++) {
     container = pizzaContainer[i];
     container.classList.remove(remove);
     container.classList.add(add);
@@ -533,8 +533,8 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   // removed the expensive qeurries from within the loop
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+  for (var i = 0, len = items.length, phase; i < len; i++) {
+    phase = Math.sin((scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -566,9 +566,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var movingPizzas = document.querySelector("#movingPizzas1");
   var rows = Math.ceil(window.innerHeight/256);
   console.log(rows*cols);
-  for (var i = 0; i < cols * rows; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
-    // this cannot be declaed outside loop as <img> needs to be created for each mobing pizza
-    var elem = document.createElement('img');
+  for (var i = 0, elem; i < cols * rows; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
+    elem = document.createElement('img');
 
     elem.className = 'mover';
     elem.src = "images/pizza-73.png";  // using a smaller optimised image for animation

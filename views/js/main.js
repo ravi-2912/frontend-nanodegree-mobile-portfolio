@@ -565,9 +565,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var movingPizzas = document.querySelector("#movingPizzas1");
-  var movingPizzasCount = window.height/256;
-  /* TODO: Update count based on screen height */
-  for (var i = 0; i < 32; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
+  var rows = Math.ceil(window.innerHeight/256);
+  for (var i = 0; i < cols * rows; i++) {  // reduced the number of pizzas as only few will be displayed on the desktop
     // this cannot be declaed outside loop as <img> needs to be created for each mobing pizza
     var elem = document.createElement('img');
 

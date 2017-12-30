@@ -19,7 +19,7 @@ The updated page was tested with [Google's PageSpeed Insight](https://developers
 * Score for Mobile: **91 - 94 %**
 * Score for Desktop: **93 - 95 %**
 
-***
+
 
 ### Part 2: Optimize Frames per Second in `pizza.html`
 The objetive of this is to optimize the `views/pizza.html` to achieve 60 fps or higher by modifying the `views/js/main.js` file.In order to do so the following techniques have been used:

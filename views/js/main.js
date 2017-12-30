@@ -429,36 +429,50 @@ function changePizzaSizes(size) {
      Synchronous Layout (FSL). 
      The new loop is just style changes.
   */
-  for (var i = 0; i < pizzaContainer.length; i++) {
-    var container = pizzaContainer[i];
-    switch(size) {
-      case "1":
-        if(container.classList.contains("medium")) {
-          container.classList.remove("medium");
-        } else {
-          container.classList.remove("large");
-        }
-        container.classList.add("small");
-        break;
-      case "2":
-        if(container.classList.contains("large")) {
-          container.classList.remove("large");
-        } else {
-          container.classList.remove("small");
-        }
-        container.classList.add("medium");
-        break;
-      case "3":
-        if(container.classList.contains("medium")) {
-          container.classList.remove("medium");
-        } else {
-          container.classList.remove("small");
-        }
-        container.classList.add("large");
-        break;
-      default:
-        console.log("bug in changePizzaSizes");
-    }
+  var add, remove;
+  var container = pizzaContainer[0];
+  switch(size) {
+    case "1":
+      if(container.classList.contains("medium")) {
+        container.classList.remove("medium");
+        remove = "medium";
+      } else {
+        container.classList.remove("large");
+        remove = "large";
+      }
+      container.classList.add("small");
+      add = "small";
+      break;
+    case "2":
+      if(container.classList.contains("large")) {
+        container.classList.remove("large");
+        remove = "large";
+      } else {
+        container.classList.remove("small");
+        remove = "small";
+      }
+      container.classList.add("medium");
+      add = "medium";
+      break;
+    case "3":
+      if(container.classList.contains("medium")) {
+        container.classList.remove("medium");
+        remove = "medium";
+      } else {
+        container.classList.remove("small");
+        remove = "small";
+      }
+      container.classList.add("large");
+      add = "large";
+      break;
+    default:
+      console.log("bug in changePizzaSizes");
+      return false;
+  }
+  for (var i = 1; i < pizzaContainer.length; i++) {
+    container = pizzaContainer[i];
+    container.classList.remove(remove);
+    container.classList.add(add);
   }
 }
 

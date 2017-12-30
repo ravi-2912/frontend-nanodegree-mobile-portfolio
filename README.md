@@ -24,11 +24,11 @@ The updated page was tested with [Google's PageSpeed Insight](https://developers
 ### Part 2: Optimize Frames per Second in `pizza.html`
 The objetive of this is to optimize the `views/pizza.html` to achieve 60 fps or higher by modifying the `views/js/main.js` file.In order to do so the following techniques have been used:
 
-1. Optimize images for reduced size.
-2. Reduce the number of images to be loaded - 32 for moving pizza and 50 for pizza menu items.
-3. Minimize layout querries to avoid forced reflow.
-4. Globalize layout variables **`pizzaContainer`** for pizza menu items and **`items`** for moving pizza in background. These get updated once DOM is loaded.
-5. Decouple the rAF input function **`updatePositions()`** from that delegated to event by creating new function **`onScrol()`**.
+1. **Optimized images** for reduced size.
+2. **Reduced the number of images** to be loaded - 50 for pizza menu items and dynamic for moving pizzas baed on window size.
+3. Minimize layout querries to **avoid forced reflow**.
+4. **Globalize** layout variables **`pizzaContainer`** for pizza menu items and **`items`** for moving pizza in background. These get updated once DOM is loaded.
+5. **Decouple the rAF** input function **`updatePositions()`** from that delegated to event by creating new function **`onScrol()`**.
 6. Using CSS stles **`.large`**, **`.medium`** and **`.small`** to changes pizza sizes by adding and removing these classes.
 
 

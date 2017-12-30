@@ -2,5 +2,3 @@
 node_modules/
 img/
 views/images/
-*.min.css
-*.min.js

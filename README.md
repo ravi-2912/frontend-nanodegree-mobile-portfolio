@@ -7,9 +7,8 @@ This repository provides optimization techniques for the repository provided by 
 The objective of this was to optimize the `index.html` webpage for speed and faster rendering. In order to do so the following techniques, but not limited to, have been used:
 
 1. Optimize the **Critical Rendering Path**
-2. **Code restructuring** and inlining critical CSS.
-3. Using **`defer`**, **`async`** and **`media`** attribute key.
-4. Delay the load of **non-critical CSS files**.
+2. **Code restructuring** and inlining some critical CSS.
+3. Using **`defer`**, **`async`**, **`preload`** and **`media`** attribute key..
 5. **Minify** the source html, css and js files.
 6. Optimize and minify **images**.
 7. Using **[Web Font Loader](https://github.com/typekit/webfontloader)** javascript.
@@ -31,6 +30,7 @@ The objetive of this is to optimize the `views/pizza.html` to achieve 60 fps or 
 4. **Globalize** layout variables **`pizzaContainer`** for pizza menu items and **`items`** for moving pizza in background. These get updated once DOM is loaded.
 5. **Decouple the rAF** input function **`updatePositions()`** from that delegated to event by creating new function **`onScrol()`**.
 6. Using CSS stles **`.large`**, **`.medium`** and **`.small`** to changes pizza sizes by adding and removing these classes.
+7. Using **hardware accelerated CSS** styles.
 
 
 #### Result

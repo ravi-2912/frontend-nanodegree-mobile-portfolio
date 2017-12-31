@@ -4,7 +4,7 @@ This repository provides optimization techniques for the repository provided by 
 
 ### Part 1: Optimize PageSpeed Insights score for `index.html`
 
-The objective of this was to optimize the `index.html` webpage for speed and faster rendering. In order to do so the following techniques have been used:
+The objective of this was to optimize the `index.html` webpage for speed and faster rendering. In order to do so the following techniques, but not limited to, have been used:
 
 1. Optimize the **Critical Rendering Path**
 2. **Code restructuring** and inlining critical CSS.
@@ -12,19 +12,20 @@ The objective of this was to optimize the `index.html` webpage for speed and fas
 4. Delay the load of **non-critical CSS files**.
 5. **Minify** the source html, css and js files.
 6. Optimize and minify **images**.
+7. Using **[Web Font Loader](https://github.com/typekit/webfontloader)** javascript.
 
 #### Result
 The updated page was tested with [Google's PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/ "PageSpeed Insight") the results are amazing.
 
-* Score for Mobile: **91 - 94 %**
-* Score for Desktop: **93 - 95 %**
+* Score for Mobile: **95 %**
+* Score for Desktop: **96 %**
 
 
 
 ### Part 2: Optimize Frames per Second in `pizza.html`
-The objetive of this is to optimize the `views/pizza.html` to achieve 60 fps or higher by modifying the `views/js/main.js` file.In order to do so the following techniques have been used:
+The objetive of this is to optimize the `views/pizza.html` to achieve 60 fps or higher by modifying the `views/js/main.js` file. In order to do so the following techniques, but not limited to, have been used:
 
-1. **Optimized images** for reduced size.
+1. **Optimized images** for reduced size and optimized **for-loops**.
 2. **Reduced the number of images** to be loaded - 50 for pizza menu items and dynamic for moving pizzas baed on window size.
 3. Minimize layout querries to **avoid forced reflow**.
 4. **Globalize** layout variables **`pizzaContainer`** for pizza menu items and **`items`** for moving pizza in background. These get updated once DOM is loaded.
